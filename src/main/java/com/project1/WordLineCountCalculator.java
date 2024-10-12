@@ -19,19 +19,22 @@ public class WordLineCountCalculator {
     }
 
 
-    public void calculateLinesAndWords(String pathToFile) throws IOException {
-        File file = new File(pathToFile);
-        if (!file.exists()) {
-            throw new FileNotFoundException("File " + pathToFile + " not found");
-        }
+    public void calculateLinesAndWords(String pathToFile) {
 
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+        try {
+            File file = new File(pathToFile);
+            if (!file.exists()) {
+                throw new FileNotFoundException("File " + pathToFile + " not found");
+            }
 
-        char lastChar = 'c';
-        int currentChar;
-        long tempWordCount = 0;
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
 
-        while ((currentChar = bufferedReader.read()) != -1) {
+            char lastChar = 'c';
+            int currentChar;
+            long tempWordCount = 0;
+
+
+            while ((currentChar = bufferedReader.read()) != -1) {
 
             /*
 
@@ -48,20 +51,27 @@ public class WordLineCountCalculator {
              */
 
 
-            if (Character.isWhitespace((char) currentChar) && isNotWhitespaceOrControl(lastChar)) {
-                tempWordCount++;
-            }
-            if ((char) currentChar == '\n' && (Character.isWhitespace(lastChar) || isNotWhitespaceOrControl(lastChar))) {
-                lineCount++;
-                wordCount += tempWordCount;
-                tempWordCount = 0;
-            }
+                if (Character.isWhitespace((char) currentChar) && isNotWhitespaceOrControl(lastChar)) {
+                    tempWordCount++;
+                }
+                if ((char) currentChar == '\n' && (Character.isWhitespace(lastChar) || isNotWhitespaceOrControl(lastChar))) {
+                    lineCount++;
+                    wordCount += tempWordCount;
+                    tempWordCount = 0;
+                }
 
-            if ((char) currentChar == '\n' && lastChar == '\n') {
-                lineCount++;
-            }
-            lastChar = (char) currentChar;
+                if ((char) currentChar == '\n' && lastChar == '\n') {
+                    lineCount++;
+                }
+                lastChar = (char) currentChar;
 
+            }
+        } catch (FileNotFoundException fne) {
+            System.out.println(fne.getMessage());
+            java.lang.System.exit(1);
+        } catch (IOException ioe) {
+            System.out.println(ioe.getMessage());
+            java.lang.System.exit(1);
         }
 
     }

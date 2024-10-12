@@ -6,14 +6,21 @@ import java.io.FileNotFoundException;
 public class FileSizeCalculator {
     private long fileSize;
 
-    public long calculateFileSize(String pathToFile) throws FileNotFoundException {
-        File file = new File(pathToFile);
-        if (!file.exists()) {
-            throw new FileNotFoundException("File " + pathToFile + " not found");
+    public long calculateFileSize(String pathToFile) {
+        try {
+            File file = new File(pathToFile);
+            if (!file.exists()) {
+                throw new FileNotFoundException("File " + pathToFile + " not found");
+            }
+            this.fileSize = file.length();
+
+        } catch (FileNotFoundException fne) {
+            System.out.println(fne.getMessage());
+            java.lang.System.exit(1);
         }
-        this.fileSize = file.length();
         return this.fileSize;
     }
+
 
     public long getFileSize() {
         return fileSize;

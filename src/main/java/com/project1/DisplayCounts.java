@@ -1,12 +1,10 @@
 package com.project1;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.List;
 
 public class DisplayCounts {
 
-    public void display(String[] args) throws FileNotFoundException {
+    public void display(String[] args) {
 
         ArgumentParser argumentParser = new ArgumentParser();
         argumentParser.parseInput(args);
@@ -18,23 +16,16 @@ public class DisplayCounts {
         FileSizeCalculator fileSizeCalculator = new FileSizeCalculator();
 
         if (activeOptions.contains("c")) {
-            try {
-                long fileSize = fileSizeCalculator.calculateFileSize(fileNames.get(0));
-                System.out.println("File size is: " + fileSize);
-            } catch (FileNotFoundException e) {
-                throw new FileNotFoundException();
-            }
+            long fileSize = fileSizeCalculator.calculateFileSize(fileNames.get(0));
+
+            System.out.println("File size is: " + fileSize);
         }
 
 
         if (activeOptions.contains("w") || activeOptions.contains("l")) {
             WordLineCountCalculator wordLineCountCalculator = new WordLineCountCalculator();
-            try {
-                wordLineCountCalculator.calculateLinesAndWords(fileNames.get(0));
-            } catch (
-                    IOException e) {
-                throw new RuntimeException(e);
-            }
+
+            wordLineCountCalculator.calculateLinesAndWords(fileNames.get(0));
 
 
             if (activeOptions.contains("w")) {
