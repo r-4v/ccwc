@@ -2,7 +2,7 @@ package com.project1;
 
 import java.io.*;
 
-public class WordLineCountCalculator {
+public class WordLineCountCalculator implements FileMetaDataCalculator {
     private long wordCount = 0;
     private long lineCount = 0;
 
@@ -18,8 +18,8 @@ public class WordLineCountCalculator {
         return !Character.isWhitespace(c) && !Character.isISOControl(c);
     }
 
-
-    public void calculateLinesAndWords(String pathToFile) {
+    @Override
+    public void calculate(String pathToFile) {
 
         try {
             File file = new File(pathToFile);

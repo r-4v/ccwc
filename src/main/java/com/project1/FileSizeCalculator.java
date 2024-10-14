@@ -3,10 +3,11 @@ package com.project1;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-public class FileSizeCalculator {
+public class FileSizeCalculator implements FileMetaDataCalculator {
     private long fileSize;
 
-    public long calculateFileSize(String pathToFile) {
+    @Override
+    public void calculate(String pathToFile) {
         try {
             File file = new File(pathToFile);
             if (!file.exists()) {
@@ -18,7 +19,7 @@ public class FileSizeCalculator {
             System.out.println(fne.getMessage());
             java.lang.System.exit(1);
         }
-        return this.fileSize;
+
     }
 
 

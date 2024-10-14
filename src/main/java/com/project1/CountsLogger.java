@@ -2,13 +2,11 @@ package com.project1;
 
 import java.util.List;
 
-public class DisplayCounts {
+public class CountsLogger {
 
-    public void display(String[] args) {
+    public void display(ArgumentSource argumentSource, ArgumentParser argumentParser) {
 
-        ArgumentParser argumentParser = new ArgumentParser();
-        argumentParser.parseInput(args);
-        argumentParser.parseOptions();
+        argumentParser.parse(argumentSource);
 
         List<String> activeOptions = argumentParser.getActiveOptions();
         List<String> fileNames = argumentParser.getFiles();
@@ -16,8 +14,8 @@ public class DisplayCounts {
         FileSizeCalculator fileSizeCalculator = new FileSizeCalculator();
 
         if (activeOptions.contains("c")) {
-            long fileSize = fileSizeCalculator.calculateFileSize(fileNames.get(0));
-
+            fileSizeCalculator.calculate(fileNames.get(0));
+            long fileSize = fileSizeCalculator.getFileSize();
             System.out.println("File size is: " + fileSize);
         }
 
@@ -25,7 +23,7 @@ public class DisplayCounts {
         if (activeOptions.contains("w") || activeOptions.contains("l")) {
             WordLineCountCalculator wordLineCountCalculator = new WordLineCountCalculator();
 
-            wordLineCountCalculator.calculateLinesAndWords(fileNames.get(0));
+            wordLineCountCalculator.calculate(fileNames.get(0));
 
 
             if (activeOptions.contains("w")) {
@@ -41,5 +39,5 @@ public class DisplayCounts {
         }
 
     }
-
+    
 }
