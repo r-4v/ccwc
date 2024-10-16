@@ -1,4 +1,6 @@
-package com.project1;
+package com.project1.reader;
+
+import com.project1.arguments.ArgumentParser;
 
 import java.util.List;
 

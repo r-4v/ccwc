@@ -1,4 +1,4 @@
-package com.project1;
+package com.project1.reader;
 
 import java.io.BufferedReader;
 import java.util.Optional;

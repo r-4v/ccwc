@@ -1,4 +1,4 @@
-package com.project1;
+package com.project1.arguments;
 
 import java.util.ArrayList;
 import java.util.List;

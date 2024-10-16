@@ -1,4 +1,4 @@
-package com.project1;
+package com.project1.calculator;
 
 import java.io.BufferedReader;
 import java.io.IOException;

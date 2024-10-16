@@ -1,4 +1,10 @@
-package com.project1;
+package com.project1.output;
+
+import com.project1.arguments.ArgumentParser;
+import com.project1.arguments.ArgumentSource;
+import com.project1.calculator.WordLineByteCharacterCountCalculator;
+import com.project1.reader.FileDataStreamReader;
+import com.project1.reader.StandardInputDataStreamReader;
 
 import java.io.BufferedReader;
 import java.util.List;
@@ -11,7 +17,7 @@ public class CountsLogger {
     List<String> activeOptions;
     List<String> fileNames;
 
-    void setup(ArgumentSource argumentSource, ArgumentParser argumentParser) {
+    public void setup(ArgumentSource argumentSource, ArgumentParser argumentParser) {
         argumentParser.parse(argumentSource);
         this.activeOptions = argumentParser.getActiveOptions();
         this.fileNames = argumentParser.getFiles();
@@ -29,7 +35,7 @@ public class CountsLogger {
     }
 
 
-    void display(String dataMode) {
+    public void display(String dataMode) {
 
 
         Optional<BufferedReader> optionalBufferedReader = this.getInputAppropriateReader(dataMode);
