@@ -44,7 +44,7 @@ public class CLIArgumentParser implements ArgumentParser {
             int optionLength = option.length();
             while (optionLength > 1) {
                 String currentOption = option.substring(optionLength - 1, optionLength);
-                if (!currentOption.equals("c") && !currentOption.equals("l") && !currentOption.equals("w")) {
+                if (!currentOption.equals("c") && !currentOption.equals("l") && !currentOption.equals("w") && !currentOption.equals("m")) {
                     throw new IllegalArgumentException("Invalid option: " + currentOption);
                 }
                 activeOptions.add(currentOption);

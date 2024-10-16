@@ -1,7 +1,9 @@
 package com.project1;
 
+import java.io.BufferedReader;
+
 public interface FileMetaDataCalculator {
 
-    void calculate(String pathToFile);
+    void calculate(BufferedReader bufferedReader);
 
 }
