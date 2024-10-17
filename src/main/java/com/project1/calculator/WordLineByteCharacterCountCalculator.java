@@ -38,7 +38,6 @@ public class WordLineByteCharacterCountCalculator implements FileMetaDataCalcula
 
             char lastChar = 'c';
             int currentChar;
-            long tempWordCount = 0;
             boolean lastWasWord = false;
 
 
@@ -51,20 +50,17 @@ public class WordLineByteCharacterCountCalculator implements FileMetaDataCalcula
 
 
                 if (Character.isWhitespace((char) currentChar) && isNotWhitespaceOrControl(lastChar)) {
-                    tempWordCount++;
+                    wordCount++;
                     lastWasWord = false;
                 } else if (isNotWhitespaceOrControl((char) currentChar)) {
                     lastWasWord = true;
                 }
                 if ((char) currentChar == '\n' && (Character.isWhitespace(lastChar) || isNotWhitespaceOrControl(lastChar))) {
                     lineCount++;
-                    wordCount += tempWordCount;
-                    tempWordCount = 0;
+
                 }
 
-                if ((char) currentChar == '\n' && lastChar == '\n') {
-                    lineCount++;
-                }
+
                 lastChar = (char) currentChar;
             }
             if (lastWasWord) {
